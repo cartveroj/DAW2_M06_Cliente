@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="js/18_09_2023.js"></script>
+</head>
+<body>
+    <h1>Primera clase JavaScript</h1>
+
+    <button onclick="saludoInicial()">click</button>
+    <br />
+    <br />
+    <br />
+    <div style="color:blueviolet" onmouseover="encima()">tócame</div>
+
+    <img src="arrastrame.jpg"   ondragstart="arrastrame()"><img />
+    <div class="eventos">
+        <p>introduce tu nombre</p>
+        <input type="text" oninput="mensaje()" id="data"/>
+        <p id="demo"></p>
+    </div>
+    <div class="tabla">
+        <p>Introduce un numero del 1 al 10</p>
+        <input type="number" id="numero" onchange="tabla()" />
+        <p id="valor"></p>
+    </div>
+</body>
+</html>
