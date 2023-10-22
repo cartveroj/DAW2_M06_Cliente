@@ -1,11 +1,10 @@
 function TablaCreacionRombo(){
-
+    //funcion que recibe parametros de numero de col y dibuja un rombo por pantalla
     let columnas = parseInt(prompt("Ingrese numero impar de columnas"));
     let table= document.createElement("table");
     let filas = (columnas);
     let casillasEnBlanco = Math.trunc(columnas/2);
-    let casillasEnBlancoDos = Math.trunc(columnas/2);
-    let mitadTabla = filas/2;
+    let mitadTabla = Math.floor(filas/2);
 
     for(let i=0; i<filas; i++){
         let fil = document.createElement("tr");
@@ -17,21 +16,18 @@ function TablaCreacionRombo(){
             td.style.width = "20px"; 
             td.style.height = "20px";
 
-            if(i <= mitadTabla){
-                if(j >= casillasEnBlanco && j < columnas - casillasEnBlanco){
-                    td.style.backgroundColor = "red"
-                }
-            }else{
-                if( j <= casillasEnBlancoDos && j > columnas - casillasEnBlancoDos){
-                    td.style.backgroundColor = "red"
-                }
+            if(j >= casillasEnBlanco && j < columnas - casillasEnBlanco){
+                td.style.backgroundColor = "red"
             }
             
             fil.appendChild(td);
           }
+          if(i < mitadTabla){
             casillasEnBlanco --;
-            casillasEnBlancoDos ++;
-            
+          }else{
+            casillasEnBlanco ++;
+          }
+
             table.appendChild(fil);
             
         }
@@ -39,19 +35,15 @@ function TablaCreacionRombo(){
     }
     
 function ExtraerExtension(){
+    //funcion que recibe un nombre de archivo.extension se encarga de retornar solo la extension
     let nameFile = prompt("Ingrese un nombre de archivo (index.html)");
-    let separador=".";
-    let arrayExtension = nameFile.split(separador);
-    arrayExtension.pop();
-
-    document.write("<p> el nombre del archivo es: "+ arrayExtension.length)
-    // for (var i = 0; i < arrayExtension.length; i++) {
-    //     document.write(arrayExtension[i]+ " / ");
-    //   }
-
+    let arrayExtension = nameFile.split('.');
+    
+    document.write("<p> el nombre del archivo es: "+ nameFile +" la extension es: "+arrayExtension.pop())
 }
 
 function ContarNumeroDeVocales(){
+    //funcion que cuenta las vocales (A y B) de uns string y retorna si tiene la misma cantidad o no
     let texto = prompt("Introduzca un texto").toUpperCase();
     let vocalA = "A";
     let vocalB = "B";
