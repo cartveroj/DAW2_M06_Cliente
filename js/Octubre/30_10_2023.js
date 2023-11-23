@@ -37,15 +37,21 @@ function verificadorDeCodigoDeBarras(){
     let clave = 0;
     
     if(codigoBarras.length > 13){
-        document.write("Codigo de barras longitud incorrecta");
+        document.write("Codigo de barras incorrecto supera la longitud maxima (13 digitos)");
     }else{
         if(codigoBarras.length < 8){
-            codigoBarras = codigoBarras.padEnd(8,'0');
+            codigoBarras = codigoBarras.padStart(8,'0');
+            console.log(codigoBarras);
         }else if (codigoBarras.length > 8 && codigoBarras.length < 13) {
-            codigoBarras = codigoBarras.padEnd(13,'0');    
+            codigoBarras = codigoBarras.padStart(13,'0');    
         }
+        
         sumaDigitos= sumaNumeros(codigoBarras);
-        clave = calculoClave(sumaDigitos);
+        if(sumaDigitos > 0){
+            clave = calculoClave(sumaDigitos);
+        }else{
+            clave = 0;
+        }
         let posicion = codigoBarras.length-1;
         if(clave == codigoBarras.charAt(posicion)){
             document.write("Codigo de barras correcto");
@@ -57,12 +63,14 @@ function verificadorDeCodigoDeBarras(){
 
 function sumaNumeros(codigoBarras){
     let suma = 0;
-        let arraySinCeros = quitandoCeros(codigoBarras);
-        for(let i = 1 ; i < arraySinCeros.length  ; i++){
+    let array = codigoBarras.split('');
+    let arrayInvertidoCodigo = array.reverse();
+    console.log(arrayInvertidoCodigo);
+        for(let i = 1 ; i < arrayInvertidoCodigo.length  ; i++){
             if( i%2 == 0){
-                 suma = (parseInt(arraySinCeros[i]) * 1) + suma;
+                 suma = (parseInt(arrayInvertidoCodigo[i]) * 1) + suma;
             }else{
-                 suma = (parseInt(arraySinCeros[i]) * 3) + suma;
+                 suma = (parseInt(arrayInvertidoCodigo[i]) * 3) + suma;
                  
             }
         }
@@ -83,14 +91,8 @@ function calculoClave(suma){
     return Math.abs(resultado);
 }
 
-function quitandoCeros(codigoBarras){
-    let array = codigoBarras.split('');
-    let arrayInvertidoCodigo = array.reverse();
-    let valor = arrayInvertidoCodigo.join("");
-    let sinCeros = valor.replace(/^(0+)/g, '');
-    let arraySinCeros = sinCeros.split('');
-    return arraySinCeros;
-}
+
+
 
 
 
